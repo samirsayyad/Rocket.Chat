@@ -1,5 +1,19 @@
 <template name="message">
+	<style>
+		.message-body-wrapper{
+			margin-left: 5%;
+		}
+		#messageTime{
+			left: 24px;
+			position: absolute;
+		}
+		#messageUserImage{
+			left: 90px;
+		}
+	</style>
 	<li id="{{templatePrefix}}{{msg._id}}" data-id="{{msg._id}}" data-context={{actionContext}} class="message {{className}} {{ignoredClass}} {{system}} {{t}} {{own}} {{isTemp}} {{chatops}} {{collapsed}} {{customClass}}" data-username="{{msg.u.username}}" data-tmid="{{msg.tmid}}" data-groupable="{{isGroupable}}" data-date="{{date}}" data-timestamp="{{timestamp}}" data-alias="{{msg.alias}}">
+		<time id="messageTime" class="time" title='{{date}} {{time}}' datetime='{{date}} {{time}}'>{{time}}</time>
+
 		{{#if isThreadReply}}
 			{{> messageThread parentMessage=parentMessage msg=msg tmid=msg.tmid class=bodyClass following=msg.following}}
 			<div class="thread-replied js-open-thread">
@@ -14,27 +28,28 @@
 		{{#unless shouldHideBody}}
 			{{#if msg.avatar}}
 				{{#if avatarFromUsername}}
-					<button aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
+					<button  id="messageUserImage"  aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
 						{{> avatar username=avatarFromUsername}}
 					</button>
 				{{else}}
-					<button aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
+					<button  id="messageUserImage" aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
 						{{> avatar url=avatarFromMessage}}
 					</button>
 				{{/if}}
 			{{else}}
 				{{#if msg.emoji}}
-					<button aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
+					<button  id="messageUserImage"  aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
 						<div class="avatar">
 							{{> renderEmoji msg.emoji}}
 						</div>
 					</button>
 				{{else}}
-					<button aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
+					<button  id="messageUserImage"  aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
 						{{> avatar username=msg.u.username}}
 					</button>
 				{{/if}}
 			{{/if}}
+
 			<div class="message-body-wrapper">
 				<div class="title border-component-color color-info-font-color">
 					<button type="button" class="user user-card-message color-primary-font-color" data-username="{{msg.u.username}}" tabindex="1">
@@ -50,7 +65,6 @@
 					{{#if isBot}}
 						<span class="is-bot color-secondary-color border-component-color">{{_ "Bot"}}</span>
 					{{/if}}
-					<time class="time" title='{{date}} {{time}}' datetime='{{date}} {{time}}'>{{time}}</time>
 					{{#if showTranslated}}
 						<span class="translated">
 							<i class="icon-language {{#if msg.autoTranslateFetching}}loading{{/if}}" title="{{_ "Translated"}}"></i>
