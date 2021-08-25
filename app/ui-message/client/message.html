@@ -1,5 +1,50 @@
 <template name="message">
+	<style>
+		.message-body-wrapper{
+			margin-left: 3.5%;
+			display: flex;
+		}
+		#messageTime{
+			left: 16px;
+			position: absolute;
+			font-family: Roboto;
+			font-style: italic;
+			font-weight: 300;
+			font-size: 15px;
+			line-height: 18px;
+		}
+		#messageUserImage{
+			left: 90px;
+		}
+		.message .thumb:not(.thumb-small) .avatar{
+			width: 20px;
+			height: 20px;
+		}
+		.avatar .avatar-image{
+			border-radius: 50%;
+		}
+		.message .thumb{
+			width: 20px;
+			height: 20px;
+		}
+		#messageText{
+			font-family: Roboto;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 15px;
+			line-height: 24px;
+		}
+		.message{
+			display: flex;
+			align-items: center;
+		}
+		.message.system > .thumb{
+			margin-left: 0;
+		}
+	</style>
 	<li id="{{templatePrefix}}{{msg._id}}" data-id="{{msg._id}}" data-context={{actionContext}} class="message {{className}} {{ignoredClass}} {{system}} {{t}} {{own}} {{isTemp}} {{chatops}} {{collapsed}} {{customClass}}" data-username="{{msg.u.username}}" data-tmid="{{msg.tmid}}" data-groupable="{{isGroupable}}" data-date="{{date}}" data-timestamp="{{timestamp}}" data-alias="{{msg.alias}}">
+		<time id="messageTime" class="time" title='{{date}} {{time}}' datetime='{{date}} {{time}}'>{{time}}</time>
+
 		{{#if isThreadReply}}
 			{{> messageThread parentMessage=parentMessage msg=msg tmid=msg.tmid class=bodyClass following=msg.following}}
 			<div class="thread-replied js-open-thread">
@@ -14,27 +59,28 @@
 		{{#unless shouldHideBody}}
 			{{#if msg.avatar}}
 				{{#if avatarFromUsername}}
-					<button aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
+					<button  id="messageUserImage"  aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
 						{{> avatar username=avatarFromUsername}}
 					</button>
 				{{else}}
-					<button aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
+					<button  id="messageUserImage" aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
 						{{> avatar url=avatarFromMessage}}
 					</button>
 				{{/if}}
 			{{else}}
 				{{#if msg.emoji}}
-					<button aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
+					<button  id="messageUserImage"  aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
 						<div class="avatar">
 							{{> renderEmoji msg.emoji}}
 						</div>
 					</button>
 				{{else}}
-					<button aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
+					<button  id="messageUserImage"  aria-label="{{msg.u.username}}" class="thumb user-card-message" data-username="{{msg.u.username}}">
 						{{> avatar username=msg.u.username}}
 					</button>
 				{{/if}}
 			{{/if}}
+
 			<div class="message-body-wrapper">
 				<div class="title border-component-color color-info-font-color">
 					<button type="button" class="user user-card-message color-primary-font-color" data-username="{{msg.u.username}}" tabindex="1">
@@ -50,7 +96,6 @@
 					{{#if isBot}}
 						<span class="is-bot color-secondary-color border-component-color">{{_ "Bot"}}</span>
 					{{/if}}
-					<time class="time" title='{{date}} {{time}}' datetime='{{date}} {{time}}'>{{time}}</time>
 					{{#if showTranslated}}
 						<span class="translated">
 							<i class="icon-language {{#if msg.autoTranslateFetching}}loading{{/if}}" title="{{_ "Translated"}}"></i>
@@ -93,7 +138,7 @@
 						<span class="toggle-hidden icon-right-dir" data-message="{{msg._id}}"> {{_ "Message_Ignored"}} </span>
 					{{/if}}
 				</div>
-				<div class="body {{bodyClass}}" dir="auto" data-unread-text="{{_ "Unread_Messages"}}">
+				<div id="messageText" class="body {{bodyClass}}" dir="auto" data-unread-text="{{_ "Unread_Messages"}}">
 					{{#if isSnippet}}
 						<div class="snippet-name">{{_ "Snippet_name"}}: {{snippetName}}</div>
 					{{/if}}
