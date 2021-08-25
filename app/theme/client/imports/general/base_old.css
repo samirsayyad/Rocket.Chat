@@ -2786,7 +2786,8 @@
 
 .full-page,
 .page-loading {
-	background-color: var(--rc-color-primary);
+	/* background-color: var(--rc-color-primary); */
+	background: #fff;
 }
 
 .rc-old.full-page {
