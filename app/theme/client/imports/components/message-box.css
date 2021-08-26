@@ -84,17 +84,20 @@
 	&__container {
 		display: flex;
 
-		padding: 0.75rem 0;
+		padding: 0.25rem 0;
 
 		cursor: text;
 
 		transition: background-color 0.3s;
 
-		border-width: var(--message-box-container-border-width);
+		/* border-width: var(--message-box-container-border-width);
 		border-color: var(--message-box-container-border-color);
-		border-radius: var(--message-box-container-border-radius);
+		border-radius: var(--message-box-container-border-radius); */
 
 		align-items: center;
+		background: #F1F3F4;
+		border-radius: 5px;
+		
 
 		&.editing {
 			background-color: var(--message-box-editing-color);
@@ -130,12 +133,12 @@
 		display: flex;
 		flex: auto 0 0;
 
-		width: 50px;
+		width: 35px;
 		height: 21px;
-
+		margin-left: 0.25rem;
 		cursor: pointer;
 		align-items: center;
-		justify-content: center;
+		/* justify-content: center; */
 
 		& .rc-input__icon-svg {
 			font-size: 1.4rem;

@@ -34,6 +34,22 @@
 			font-size: 15px;
 			line-height: 24px;
 		}
+		#usernameText{
+			font-family: Roboto;
+			font-style: normal;
+			font-weight: bold;
+			font-size: 15px;
+			line-height: 18px;
+			/* identical to box height */
+
+			display: flex;
+			align-items: center;
+
+			/* black */
+
+			color: #000000;
+
+		}
 		.message{
 			display: flex;
 			align-items: center;
@@ -83,7 +99,7 @@
 
 			<div class="message-body-wrapper">
 				<div class="title border-component-color color-info-font-color">
-					<button type="button" class="user user-card-message color-primary-font-color" data-username="{{msg.u.username}}" tabindex="1">
+					<button type="button" id="usernameText" class="user user-card-message color-primary-font-color" data-username="{{msg.u.username}}" tabindex="1">
 						{{getName}}{{#if showUsername}} <span class="message-alias border-component-color color-info-font-color">@{{msg.u.username}}</span>{{/if}}
 					</button>
 					{{> StatusMessage uid=msg.u._id}}
