@@ -9,7 +9,7 @@ import { settings } from '../../../settings';
 let lastDay = t('yesterday');
 let clockMode;
 let sameDay;
-const dayFormat = ['h:mm A', 'H:mm'];
+const dayFormat = ['H:mm A', 'H:mm'];
 
 Meteor.startup(() => Tracker.autorun(() => {
 	clockMode = getUserPreference(Meteor.userId(), 'clockMode', false);
@@ -30,7 +30,7 @@ export const formatTime = (time) => {
 export const formatDateAndTime = (time) => {
 	switch (clockMode) {
 		case 1:
-			return moment(time).format('MMMM D, Y h:mm A');
+			return moment(time).format('MMMM D, Y H:mm A');
 		case 2:
 			return moment(time).format('MMMM D, Y H:mm');
 		default:
