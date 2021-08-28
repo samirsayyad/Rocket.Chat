@@ -73,7 +73,8 @@
 	&&--ignored {
 		min-height: 25px;
 		padding: 2px 50px 2px 70px;
-
+		display: flex;
+		align-items: center;
 		font-size: 12px;
 
 		& > .thumb {
@@ -84,8 +85,8 @@
 			margin-left: 16px;
 
 			& .avatar {
-				width: 100%;
-				height: 100%;
+				width: 20px;
+				height: 20px;
 			}
 		}
 
@@ -110,7 +111,7 @@
 		}
 
 		& + .message--ignored.sequential {
-			display: none;
+			/* display: none; */
 		}
 	}
 
@@ -220,10 +221,12 @@
 		min-height: 26px;
 		padding: 5px 15px 5px 37px;
 
-		&.sequential {
+		/* &.sequential {
 			& .thumb:not(.thumb-small),
 			& .user {
 				display: inline-block;
+				width: 20px;
+				height: 20px;
 			}
 
 			& .title {
@@ -240,7 +243,7 @@
 					display: inline-block;
 				}
 			}
-		}
+		} */
 
 		& .attachment {
 			& .attachment-title > a {
@@ -282,7 +285,7 @@
 
 		& .title {
 			& .avatar-image {
-				border-radius: 2px;
+				border-radius: 50%;
 			}
 
 			& .role-tag {
@@ -329,17 +332,7 @@
 #messageUserImage{
 	left: 90px;
 }
-.message .thumb:not(.thumb-small) .avatar{
-	width: 20px;
-	height: 20px;
-}
-.avatar .avatar-image{
-	border-radius: 50%;
-}
-.message .thumb{
-	width: 20px;
-	height: 20px;
-}
+
 #messageText{
 	font-family: 'Roboto';
 	font-style: normal;
