@@ -47,7 +47,7 @@ services:
     command: >
       bash -c
         "for i in `seq 1 30`; do
-          mongo mongo/rocketchat --eval \"
+          mongo mongo/rocketchat_master_new --eval \"
             rs.initiate({
               _id: 'rs0',
               members: [ { _id: 0, host: 'localhost:27017' } ]})\" &&
