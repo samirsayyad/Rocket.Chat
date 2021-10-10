@@ -15,9 +15,9 @@ services:
     volumes:
       - ./uploads:/app/uploads
     environment:
-      - PORT=3003
-      - ROOT_URL=http://localhost:3003
-      - MONGO_URL=mongodb://mongo:27017/rocketchat_master_new
+      - PORT=3013
+      - ROOT_URL=http://localhost:3013
+      - MONGO_URL=mongodb://mongo:27017/rocketchat_dev_new
       - MONGO_OPLOG_URL=mongodb://mongo:27017/local
 #       - MAIL_URL=smtp://smtp.email
 #       - HTTP_PROXY=http://proxy.domain.com
@@ -25,7 +25,7 @@ services:
     depends_on:
       - mongo
     ports:
-      - 3003:3003
+      - 3013:3013
     labels:
       - "traefik.backend=rocketchat"
       - "traefik.frontend.rule=Host: your.domain.tld"
@@ -63,7 +63,7 @@ services:
     image: rocketchat/hubot-rocketchat:latest
     restart: unless-stopped
     environment:
-      - ROCKETCHAT_URL=rocketchat:3003
+      - ROCKETCHAT_URL=rocketchat:3013
       - ROCKETCHAT_ROOM=GENERAL
       - ROCKETCHAT_USER=samir
       - ROCKETCHAT_PASSWORD=q1w2e3r4
@@ -78,7 +78,7 @@ services:
       - ./scripts:/home/hubot/scripts
   # this is used to expose the hubot port for notifications on the host on port 3001, e.g. for hubot-jenkins-notifier
     ports:
-      - 3004:8080
+      - 3014:8080
 
   #traefik:
   #  image: traefik:latest
