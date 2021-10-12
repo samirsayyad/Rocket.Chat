@@ -2189,7 +2189,6 @@
 	&.system {
 		min-height: 25px;
 		padding: 2px 50px 2px 70px;
-		display: none;
 		font-size: 12px;
 
 		& > .thumb {
