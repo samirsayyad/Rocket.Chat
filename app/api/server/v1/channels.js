@@ -42,6 +42,26 @@ function findChannelByIdOrName({ params, checkedArchived = true, userId }) {
 	return room;
 }
 
+// same like findChannelByIdOrName just return rooms
+function findChannelsByIdOrName({ params, checkedArchived = true, userId }) {
+	if(!params.rooms || !params.rooms.length)
+		throw new Meteor.Error('error-rooms-param-not-provided', 'The parameter "rooms" is required as array');
+	const fields = { ...API.v1.defaultFieldsToExclude };
+	var rooms=[];
+	for (roomName of params.rooms){
+		if (roomName){
+			var room = Rooms.findOneByName(roomName, { fields });
+			if (userId && room.lastMessage) {
+				var [lastMessage] = normalizeMessagesForUser([room.lastMessage], userId);
+				room.lastMessage = lastMessage;
+			}
+			if (room && (room.t == 'c' || room.t == 'l') && (!room.archived) )
+				rooms.push(room)
+		}
+	}
+	return rooms;
+}
+
 API.v1.addRoute('channels.addAll', { authRequired: true }, {
 	post() {
 		const findResult = findChannelByIdOrName({ params: this.requestParams() });
@@ -450,6 +470,20 @@ API.v1.addRoute('channels.join', { authRequired: true }, {
 
 		return API.v1.success({
 			channel: findChannelByIdOrName({ params: this.requestParams(), userId: this.userId }),
+		});
+	},
+});
+
+API.v1.addRoute('channels.joinToAll', { authRequired: true }, {
+	post() {
+		const findResult = findChannelsByIdOrName({ params: this.requestParams() });
+
+		Meteor.runAsUser(this.userId, () => {
+			Meteor.call('joinAllRooms', findResult, this.bodyParams.joinCode);
+		});
+		return API.v1.success({
+			channels : findResult,
+			
 		});
 	},
 });

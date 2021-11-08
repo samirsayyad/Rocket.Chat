@@ -48,6 +48,7 @@ import './methods/getUserRoles';
 import './methods/insertOrUpdateUser';
 import './methods/joinDefaultChannels';
 import './methods/joinRoom';
+import './methods/joinAllRooms';
 import './methods/leaveRoom';
 import './methods/refreshOAuthService';
 import './methods/removeOAuthService';
