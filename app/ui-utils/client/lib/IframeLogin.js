@@ -4,6 +4,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Tracker } from 'meteor/tracker';
 import { HTTP } from 'meteor/http';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import { settings } from '../../../settings';
 
@@ -15,13 +16,17 @@ export class IframeLogin {
 		this.iframeUrl = undefined;
 		this.apiUrl = undefined;
 		this.apiMethod = undefined;
+		this.etherpadUserId = undefined;
 
 		Tracker.autorun((c) => {
+			// @Samir add query param to iframe api url that include Etherpad userId
+			if(FlowRouter.current().queryParams){
+				this.etherpadUserId = FlowRouter.current().queryParams.etherpadUserId;
+			}
 			this.enabled = settings.get('Accounts_iframe_enabled');
 			this.reactiveEnabled.set(this.enabled);
-
-			this.iframeUrl = settings.get('Accounts_iframe_url');
-			this.apiUrl = settings.get('Accounts_Iframe_api_url');
+			this.iframeUrl = settings.get('Accounts_iframe_url') + `/${this.etherpadUserId}`; 
+			this.apiUrl = settings.get('Accounts_Iframe_api_url') + `/${this.etherpadUserId}`; 
 			this.apiMethod = settings.get('Accounts_Iframe_api_method');
 
 			if (this.enabled === false) {
@@ -46,7 +51,7 @@ export class IframeLogin {
 			return;
 		}
 
-		console.log('tryLogin');
+		console.log('[Rocketchat]: tryLogin');
 		const options = {
 			beforeSend: (xhr) => {
 				xhr.withCredentials = true;
@@ -92,7 +97,7 @@ export class IframeLogin {
 			};
 		}
 
-		console.log('loginWithToken');
+		console.log('[Rocketchat]: loginWithToken');
 
 		if (tokenData.loginToken) {
 			return Meteor.loginWithToken(tokenData.loginToken, callback);
