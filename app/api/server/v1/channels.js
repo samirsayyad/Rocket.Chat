@@ -43,10 +43,10 @@ function findChannelByIdOrName({ params, checkedArchived = true, userId }) {
 }
 
 // same like findChannelByIdOrName just return rooms
-function findChannelsByIdOrName({ params, checkedArchived = true, userId }) {
+function findChannelsByIdOrName({ params, checkedArchived = true, userId , filter }) {
 	if(!params.rooms || !params.rooms.length)
 		throw new Meteor.Error('error-rooms-param-not-provided', 'The parameter "rooms" is required as array');
-	const fields = { ...API.v1.defaultFieldsToExclude };
+	const fields = filter ? {filter} : { ...API.v1.defaultFieldsToExclude };
 	var rooms=[];
 	for (roomName of params.rooms){
 		if (roomName){
@@ -435,6 +435,19 @@ API.v1.addRoute('channels.info', { authRequired: true }, {
 				params: this.requestParams(),
 				checkedArchived: false,
 				userId: this.userId,
+			}),
+		});
+	},
+});
+
+API.v1.addRoute('channels.getChannelsMessageCount', { authRequired: true }, {
+	post() {
+		return API.v1.success({
+			channel: findChannelsByIdOrName({
+				params: this.requestParams(),
+				checkedArchived: false,
+				userId: this.userId,
+				...API.v1.defaultFieldsForGetChannelsMessageCount,
 			}),
 		});
 	},

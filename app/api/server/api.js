@@ -57,6 +57,9 @@ export class APIClass extends Restivus {
 		this.apiPath = properties.apiPath;
 		this.authMethods = [];
 		this.fieldSeparator = '.';
+		this.defaultFieldsForGetChannelsMessageCount = {
+			msgs: 1,
+		};
 		this.defaultFieldsToExclude = {
 			joinCode: 0,
 			members: 0,
