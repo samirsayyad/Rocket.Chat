@@ -44,13 +44,7 @@
 						{{/if}}
 					{{/if}}
 
-					<span class="rc-message-box__action-label js-message-actions" data-small>
-						{{#each action in actions}}
-							<span class="js-message-action" data-id="{{action.id}}">
-								{{> icon block="rc-message-box__action" icon=action.icon }}
-							</span>
-						{{/each}}
-					</span>
+					
 
 					<span class="rc-message-box__send js-message-action js-send" disabled="{{isSendIconDisabled}}" data-small>
 						{{> icon block="rc-message-box__action" icon="send"}}
