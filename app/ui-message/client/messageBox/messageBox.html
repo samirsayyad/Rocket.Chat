@@ -1,5 +1,10 @@
 <template name="messageBox">
 	<div class="rc-message-box rc-new {{#if isEmbedded}}rc-message-box--embedded{{/if}}">
+		{{userEtherpadStatus}}
+		<button class="js-userEtherpadStatus rc-button rc-button--primary rc-message-box__join-button">
+			{{_ "bezan"}}
+		</button>
+
 		{{#unless isAnonymousOrMustJoinWithCode}}
 			{{#unless tmid}}
 				{{> messageBoxTyping rid=rid}}

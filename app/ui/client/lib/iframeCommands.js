@@ -2,14 +2,18 @@ import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 import s from 'underscore.string';
+import { Template } from 'meteor/templating';
 
-import { AccountBox } from '../../../ui-utils';
+import { AccountBox} from '../../../ui-utils';
 import { settings } from '../../../settings';
 import { callbacks } from '../../../callbacks';
 import { baseURI } from '../../../utils/client/lib/baseuri.js';
 import { add, remove } from '../../../../client/views/room/lib/Toolbox/IframeButtons';
-
 const commands = {
+	'userEtherpadStatus'() {
+//		Template.instance().userEtherpadStatus.set('tessssssssssss');
+		Session.set('userEtherpadStatus', 'login');	
+	},
 	go(data) {
 		if (typeof data.path !== 'string' || data.path.trim().length === 0) {
 			return console.error('`path` not defined');
