@@ -248,6 +248,11 @@
 			}
 		}
 	}
+	&__etherpad-button {
+		flex: 0;
+		width: 100%;
+	
+	}
 
 	&__join {
 		display: flex;
