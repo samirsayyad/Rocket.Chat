@@ -5,7 +5,6 @@ import { Session } from 'meteor/session';
 import { Template } from 'meteor/templating';
 import { Tracker } from 'meteor/tracker';
 import moment from 'moment';
-import _ from 'underscore';
 
 import { setupAutogrow } from './messageBoxAutogrow';
 import {
@@ -49,7 +48,6 @@ Template.messageBox.onCreated(function() {
 	this.isMicrophoneDenied = new ReactiveVar(true);
 	this.isSendIconVisible = new ReactiveVar(false);
 	this.userEtherpadStatus = new ReactiveVar(false);
-	//Session.set('userEtherpadStatus','sssssssssss');
 	this.set = (value) => {
 		const { input } = this;
 		if (!input) {
@@ -243,8 +241,7 @@ Template.messageBox.helpers({
 		return settings.get('Message_AllowConvertLongMessagesToAttachment') ? null : settings.get('Message_MaxAllowedSize');
 	},
 	userEtherpadStatus() {
-		// return Template.instance().userEtherpadStatus.get();
-		return Session.get('userEtherpadStatus');
+		return (Session.get('userEtherpadStatus') === 'loginNeeded');
 	},
 	isSendIconVisible() {
 		return Template.instance().isSendIconVisible.get();
@@ -332,31 +329,8 @@ const handleSubmit = (event, instance) => {
 };
 
 Template.messageBox.events({
-	'click .js-userEtherpadStatus'(event) {
-		// event.stopPropagation();
-
-		// fireGlobalEvent('test-test',"TRERES");
-alert("sssssssssssssssssssssssssssssssssss")
-		fireGlobalEvent('test-opened',"test");
-
-		// event.preventDefault();
-
-		// const params ={'test':1};
-		// const eventName = 'userEtherpadStatus';
-		// window.dispatchEvent(new CustomEvent( eventName,{detail: params }));
-		// Tracker.autorun((computation) => {
-		// 	const enabled = settings.get('Iframe_Integration_send_enable');
-		// 	if (enabled === undefined) {
-		// 		return;
-		// 	}
-		// 	computation.stop();
-		// 	if (enabled) {
-		// 		parent.postMessage({
-		// 			eventName,
-		// 			data: params,
-		// 		}, settings.get('Iframe_Integration_send_target_origin'));
-		// 	}
-		// });
+	'click .js-showEtherpadModal'(event) {
+		fireGlobalEvent('showEtherpadModal','loginPlease');
  	},
 	async 'click .js-join'(event) {
 		event.stopPropagation();
