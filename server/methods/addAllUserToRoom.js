@@ -53,9 +53,11 @@ Meteor.methods({
 				userMentions: 1,
 				groupMentions: 0,
 			});
-			Messages.createUserJoinWithRoomIdAndUser(rid, user, {
-				ts: now,
-			});
+			// @samir disabled joined message
+
+			// Messages.createUserJoinWithRoomIdAndUser(rid, user, {
+			// 	ts: now,
+			// });
 			Meteor.defer(function() {});
 			return callbacks.run('afterJoinRoom', user, room);
 		});

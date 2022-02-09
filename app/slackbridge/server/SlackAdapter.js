@@ -878,9 +878,14 @@ export default class SlackAdapter {
 	}
 
 	processChannelJoinMessage(rocketChannel, rocketUser, slackMessage, isImporting) {
-		if (isImporting) {
-			Messages.createUserJoinWithRoomIdAndUser(rocketChannel._id, rocketUser, { ts: new Date(parseInt(slackMessage.ts.split('.')[0]) * 1000), imported: 'slackbridge' });
-		} else {
+		// @samir disabled joined message
+		// if (isImporting) {
+		// 	Messages.createUserJoinWithRoomIdAndUser(rocketChannel._id, rocketUser, { ts: new Date(parseInt(slackMessage.ts.split('.')[0]) * 1000), imported: 'slackbridge' });
+		// } else {
+		// 	addUserToRoom(rocketChannel._id, rocketUser);
+		// }
+
+		if (!isImporting) {
 			addUserToRoom(rocketChannel._id, rocketUser);
 		}
 	}

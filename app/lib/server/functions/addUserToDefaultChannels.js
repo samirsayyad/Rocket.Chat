@@ -17,10 +17,10 @@ export const addUserToDefaultChannels = function(user, silenced) {
 				...room.favorite && { f: true },
 			});
 
-			// Insert user joined message
-			if (!silenced) {
-				Messages.createUserJoinWithRoomIdAndUser(room._id, user);
-			}
+			// Insert user joined message @samir disabled joined message
+			// if (!silenced) {
+			// 	Messages.createUserJoinWithRoomIdAndUser(room._id, user);
+			// }
 		}
 	});
 };

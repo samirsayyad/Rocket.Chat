@@ -313,7 +313,8 @@ export const forwardRoomToAgent = async (room, transferData) => {
 		if (oldServedBy && servedBy._id !== oldServedBy._id) {
 			RoutingManager.removeAllRoomSubscriptions(room, servedBy);
 		}
-		Messages.createUserJoinWithRoomIdAndUser(rid, { _id: servedBy._id, username: servedBy.username });
+		// @samir disabled joined message
+		// Messages.createUserJoinWithRoomIdAndUser(rid, { _id: servedBy._id, username: servedBy.username });
 
 		Meteor.defer(() => {
 			Apps.triggerEvent(AppEvents.IPostLivechatRoomTransferred, {
@@ -400,9 +401,10 @@ export const forwardRoomToDepartment = async (room, guest, transferData) => {
 	if (oldServedBy) {
 		RoutingManager.removeAllRoomSubscriptions(room, servedBy);
 	}
-	if (!chatQueued && servedBy) {
-		Messages.createUserJoinWithRoomIdAndUser(rid, servedBy);
-	}
+	// @samir disabled joined message
+	// if (!chatQueued && servedBy) {
+	// 	Messages.createUserJoinWithRoomIdAndUser(rid, servedBy);
+	// }
 
 	updateChatDepartment({ rid, newDepartmentId: departmentId, oldDepartmentId });
 

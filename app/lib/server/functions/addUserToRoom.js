@@ -57,23 +57,24 @@ export const addUserToRoom = function(rid, user, inviter, silenced) {
 		groupMentions: 0,
 	});
 
-	if (!silenced) {
-		if (inviter) {
-			Messages.createUserAddedWithRoomIdAndUser(rid, user, {
-				ts: now,
-				u: {
-					_id: inviter._id,
-					username: inviter.username,
-				},
-			});
-		} else if (room.prid) {
-			Messages.createUserJoinWithRoomIdAndUserDiscussion(rid, user, { ts: now });
-		} else if (room.teamMain) {
-			Messages.createUserJoinTeamWithRoomIdAndUser(rid, user, { ts: now });
-		} else {
-			Messages.createUserJoinWithRoomIdAndUser(rid, user, { ts: now });
-		}
-	}
+	// @samir disabled joined message
+	// if (!silenced) {
+	// 	if (inviter) {
+	// 		Messages.createUserAddedWithRoomIdAndUser(rid, user, {
+	// 			ts: now,
+	// 			u: {
+	// 				_id: inviter._id,
+	// 				username: inviter.username,
+	// 			},
+	// 		});
+	// 	} else if (room.prid) {
+	// 		Messages.createUserJoinWithRoomIdAndUserDiscussion(rid, user, { ts: now });
+	// 	} else if (room.teamMain) {
+	// 		Messages.createUserJoinTeamWithRoomIdAndUser(rid, user, { ts: now });
+	// 	} else {
+	// 		Messages.createUserJoinWithRoomIdAndUser(rid, user, { ts: now });
+	// 	}
+	// }
 
 	if (room.t === 'c' || room.t === 'p') {
 		Meteor.defer(function() {
