@@ -241,7 +241,7 @@ Template.messageBox.helpers({
 		return settings.get('Message_AllowConvertLongMessagesToAttachment') ? null : settings.get('Message_MaxAllowedSize');
 	},
 	userEtherpadStatus() {
-		return (Session.get('userEtherpadStatus') === 'loginNeeded');
+		return Session.get('userEtherpadStatus') === 'loginNeeded';
 	},
 	isSendIconVisible() {
 		return Template.instance().isSendIconVisible.get();
@@ -329,9 +329,9 @@ const handleSubmit = (event, instance) => {
 };
 
 Template.messageBox.events({
-	'click .js-showEtherpadModal'(event) {
-		fireGlobalEvent('showEtherpadModal','loginPlease');
- 	},
+	'click .js-showEtherpadModal'() {
+		fireGlobalEvent('showEtherpadModal', 'loginPlease');
+	},
 	async 'click .js-join'(event) {
 		event.stopPropagation();
 		event.preventDefault();

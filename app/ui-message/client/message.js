@@ -8,7 +8,7 @@ import { escapeHTML } from '@rocket.chat/string-helpers';
 import { timeAgo, formatDateAndTime } from '../../lib/client/lib/formatDate';
 import { DateFormat } from '../../lib/client';
 import { normalizeThreadTitle } from '../../threads/client/lib/normalizeThreadTitle';
-import { MessageTypes, MessageAction } from '../../ui-utils/client';
+import { MessageTypes, MessageAction, fireGlobalEvent } from '../../ui-utils/client';
 import { RoomRoles, UserRoles, Roles } from '../../models/client';
 import { Markdown } from '../../markdown/client';
 import { t, roomTypes } from '../../utils';
@@ -49,7 +49,20 @@ const renderBody = (msg, settings) => {
 
 	return msg;
 };
+Template.message.events({
+	async 'click #messageUserImage'(event) {
+		event.stopPropagation();
+		event.preventDefault();
 
+		fireGlobalEvent('showProfileDetailModal', { userId: $(event.currentTarget).data('username') });
+	},
+	async 'click #usernameText'(event) {
+		event.stopPropagation();
+		event.preventDefault();
+
+		fireGlobalEvent('showProfileDetailModal', { userId: $(event.currentTarget).data('username') });
+	},
+});
 Template.message.helpers({
 	enableMessageParserEarlyAdoption() {
 		const { settings: { enableMessageParserEarlyAdoption }, msg } = this;
