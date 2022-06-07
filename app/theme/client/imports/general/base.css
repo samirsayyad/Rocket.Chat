@@ -211,6 +211,8 @@ button {
 	.simplebar-content-wrapper,
 	section.rcx-box.rcx-box--full,
 	.rc-old.main-content {
+		background-color: #DDDDDD !important; /* 1 */
+
 		overflow: visible !important; /* 1 */
 
 		height: auto !important; /* 1 */
