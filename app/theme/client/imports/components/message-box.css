@@ -97,7 +97,7 @@
 		align-items: center;
 		background: #F1F3F4;
 		border-radius: 5px;
-		
+
 
 		&.editing {
 			background-color: var(--message-box-editing-color);
@@ -251,7 +251,7 @@
 	&__etherpad-button {
 		flex: 0;
 		width: 100%;
-	
+
 	}
 
 	&__join {
@@ -289,6 +289,13 @@
 }
 
 @media (width <= 500px) {
+	.rc-message-box__join-button{
+		-webkit-box-flex: 1;
+		-ms-flex: 0;
+		flex: 1;
+		margin: 0;
+		top: 2rem;
+	}
 	.rc-old.main-content{
 		background-color: #DDDDDD;
 	}
@@ -304,7 +311,7 @@
 		font-weight: 400 !important;
 		font-size: 16px !important;
 		line-height: 19px !important;
-		letter-spacing: -0.3px !important;		
+		letter-spacing: -0.3px !important;
 		color: #333333 !important;
 		padding: 5px 8px 26px 8px;
 		background-color: #FAFAFA !important;
