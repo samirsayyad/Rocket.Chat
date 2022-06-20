@@ -2187,6 +2187,15 @@
 	}
 
 	@media (width > 500px) {
+		.first-unread .body::before{
+			display: none;
+		}
+		.first-unread .body::after{
+			display: none;
+		}	
+		.message.new-day.first-unread .body::after{
+			display: none;
+		}
 		&.system {
 			min-height: 25px;
 			padding: 2px 50px 2px 70px;
