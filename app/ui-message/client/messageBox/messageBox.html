@@ -49,6 +49,9 @@
 									.rc-message-box__textarea{
 										display: none;
 									}
+									#sendMessageButton{
+										display: none;
+									}
 								</style>
 									<button class="js-join rc-button rc-button--primary rc-message-box__join-button">
 										{{_ "Join"}}
@@ -56,7 +59,7 @@
 								{{/if}}
 							{{/if}}
 						{{/if}}
-						<span class="rc-message-box__send js-message-action js-send" disabled="{{isSendIconDisabled}}" data-small>
+						<span id="sendMessageButton" class="rc-message-box__send js-message-action js-send" disabled="{{isSendIconDisabled}}" data-small>
 							{{> icon block="rc-message-box__action" icon="send"}}
 						</span>
 					</label>

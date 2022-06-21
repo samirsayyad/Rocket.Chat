@@ -157,9 +157,9 @@
 		}
 	}
 
-	& [data-small] {
+	/* & [data-small] {
 		display: none;
-	}
+	} */
 
 	&__audio-message {
 		display: flex;
@@ -358,6 +358,11 @@
 		width: 100%;
 		order: 2;
 		margin-left: auto;
+		position: relative !important;
+		background: none;
+		padding: 0;
+		top: 0;
+		right: 0;
 	}
 
 	.message.own{
@@ -453,9 +458,9 @@
 			display: none;
 		}
 
-		& [data-small] {
+		/* & [data-small] {
 			display: none;
-		}
+		} */
 
 		&__textarea {
 			flex: 1 0 80%;
