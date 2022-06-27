@@ -290,7 +290,7 @@
 
 @media (width <= 500px) {
 	.message.active .message-actions, .message:hover .message-actions{
-		display: none;
+		display: none !important;
 	}
 	.message.active, .message:hover{
 		background-color: inherit !important;
