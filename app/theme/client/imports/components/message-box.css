@@ -289,6 +289,12 @@
 }
 
 @media (width <= 500px) {
+	.message.active .message-actions, .message:hover .message-actions{
+		display: none;
+	}
+	.message.active, .message:hover{
+		background-color: inherit !important;
+	}
 	.rc-message-box__join-button{
 		-webkit-box-flex: 1;
 		-ms-flex: 0;
