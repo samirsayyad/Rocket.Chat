@@ -18,6 +18,7 @@
 					{{/each}}
 					</div>
 				{{/if}}
+				<p>{{userEtherpadStatus}}</p>
 
 				{{#if userEtherpadStatus}}
 					<button class="js-showEtherpadModal rc-button rc-button--primary rc-message-box__etherpad-button">
@@ -41,21 +42,6 @@
 									<span class="rc-message-box__action-menu js-action-menu" data-desktop aria-haspopup="true">
 
 									</span>
-								{{else}}
-								<style>
-									/**
-										@Samir added here because we needed conditional with less side effect - (Hard code)
-									*/
-									.rc-message-box__textarea{
-										display: none;
-									}
-									#sendMessageButton{
-										display: none;
-									}
-								</style>
-									<button class="js-join rc-button rc-button--primary rc-message-box__join-button">
-										{{_ "Join"}}
-									</button>
 								{{/if}}
 							{{/if}}
 						{{/if}}
